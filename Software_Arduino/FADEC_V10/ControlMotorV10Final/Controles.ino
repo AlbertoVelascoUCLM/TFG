@@ -60,8 +60,8 @@ void Acelera(float PorcentajeF){
 void ApagadoEmergencia(int Valor){
   //Si el valor está activado se activan los reles de corte de las electrovalvulas y se pone el acelerador a 0.
   if(Valor==1){
-    analogWrite(2,255);
-    analogWrite(3,255);
+    analogWrite(Rele1,255);
+    analogWrite(Rele2,255);
     analogWrite(Throttle,0);
   }
   //Si el valor está desactivado se desactivan los reles de corte de las electrovalvulas. 
