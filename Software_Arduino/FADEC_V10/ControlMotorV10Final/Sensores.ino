@@ -25,10 +25,11 @@ float SensorPresion(){
   //La suma de valores logicos obtenida se divide entre el numero de muestras para sacar la media.
   //Este valor medio los dividimos entre el total de valores lógicos (1023) para obtener el porcentaje de voltios que tenemos respecto a 5 voltios.
   //Una vez hecho esto multiplicamos el porcentaje por 5 para sacar el voltaje, este voltaje si lo dividimos entre el valore de la resistencia utilizada nos da el amperaje de la señal del sensor, que al multiplicar 1000 obtenemos en mA.
-  valor = ((valor/Nmuestras)/1023*5/221*1000);
+  //Se vuelve a multiplicar por mil porque solo se pueden interpolar numeros enteros
+  valor = ((valor/Nmuestras)/1023*5/221*1000*1000);
   //Desplazamos el cero absoluto hasta los 4 mA  e interpolamos valores de 0 a 4000 milibares entre 4 y 20 mA.
   //Por limitaciones de Arduino los float no muestran mas de dos decimales, entonces debemos enviar la presión medida en milibares.
-  valor = map(valor,4,20,0,4000);
+  valor = map(valor,4*1000,20*1000,0,4000);
   return valor;
 }
 
